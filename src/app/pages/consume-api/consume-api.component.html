@@ -1,0 +1,50 @@
+<h4>Consume api</h4>
+
+<br />
+
+<div class="row" style="height: 80vh;overflow: hidden;">
+  <div class="col-8">
+    <h5>Users</h5>
+
+    <br />
+
+    <div class="table-responsive" style="height: 70vh;overflow-y: scroll;">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users" (click)="selectedUser(user)" style="cursor: pointer;" [ngClass]="{'selected': userSelected.id === user.id}">
+            <th scope="row">{{ user.name }}</th>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-4" *ngIf="userSelected !== undefined && userSelected !== null">
+    <h5>Todos of {{ userSelected.name }}</h5>
+
+    <br />
+
+    <div style="height: 70vh;overflow-y: scroll;">
+      <div class="card" style="width: 18rem;margin:15px;" *ngFor="let todo of todos">
+        <div class="card-body">
+          <h5 class="card-title">{{ todo.title }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted"
+            [ngClass]="{'completed': todo.completed, 'not-completed': !todo.completed}">
+            {{ (todo.completed ? 'Completed' : 'Not completed') }}
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4" *ngIf="userSelected === undefined || userSelected === null">
+    Todos not found
+  </div>
+</div>

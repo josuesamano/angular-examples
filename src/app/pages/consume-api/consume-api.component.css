@@ -1,0 +1,12 @@
+.selected {
+  background-color: lightgray !important;
+  font-weight: bold !important;
+}
+
+.completed {
+  color: green !important;
+}
+
+.not-completed {
+  color: red !important;
+}

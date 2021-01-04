@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-6">
+    <fieldset class="border p-3">
+      <legend class="w-auto" style="padding:10px;">Contact</legend>
+      <form autocomplete="off" [formGroup]="formGroup" (ngSubmit)="send()">
+        <div class="row">
+          <div class="col-12">
+            <!-- START: Name -->
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Name</label>
+              <div class="col">
+                <input class="form-control" type="text" placeholder="Name" formControlName="name"
+                  [class.is-invalid]="fieldIsInvalid(CONTROLS.NAME)">
+                <small class="text-danger" *ngIf="fieldIsInvalid(CONTROLS.NAME)">Name is required.</small>
+              </div>
+            </div>
+            <!-- END: Name -->
+
+            <!-- START: Email -->
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Email</label>
+              <div class="col">
+                <input class="form-control" type="email" placeholder="Email" formControlName="email"
+                  [class.is-invalid]="fieldIsInvalid(CONTROLS.EMAIL)">
+                <div *ngIf="fieldIsInvalid(CONTROLS.EMAIL)" class="text-danger">
+                  <small *ngIf="formGroup.controls.email.errors?.required">Email is required.</small>
+                  <small *ngIf="formGroup.controls.email.errors?.pattern">Please, enter valid email address.</small>
+                </div>
+              </div>
+            </div>
+            <!-- END: Email -->
+
+            <!-- START: Phone -->
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Phone</label>
+              <div class="col">
+                <input class="form-control" type="text" placeholder="Phone" formControlName="phone"
+                  [class.is-invalid]="fieldIsInvalid(CONTROLS.PHONE)">
+                <div *ngIf="fieldIsInvalid(CONTROLS.PHONE)" class="text-danger">
+                  <small *ngIf="formGroup.controls.phone.errors?.required">Phone is required.</small>
+                  <small *ngIf="formGroup.controls.phone.errors?.minlength">Please, enter minimum 5 characters</small>
+                  <small *ngIf="formGroup.controls.phone.errors?.maxlength">Please, enter maximum 10 characters</small>
+                </div>
+              </div>
+            </div>
+            <!-- END: Phone -->
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <button type="button" class="btn btn-outline-dark float-left" (click)="cancel()">Cancel</button>
+            <button type="submit" class="btn btn-primary float-right">Send</button>
+          </div>
+        </div>
+      </form>
+    </fieldset>
+  </div>
+</div>
